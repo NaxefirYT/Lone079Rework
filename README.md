@@ -10,6 +10,7 @@
 
 **Lone079Rework** is a **EXILED** plugin for **SCP: Secret Laboratory** that transforms SCP-079 into a random SCP if it becomes the last SCP alive. After transformation, SCP-079 spawns in the containment chamber of the selected SCP.
 
+**Note**: This plugin is a rework of the original [Lone079](https://github.com/Cyanox62/Lone079) by Cyanox62.
 ---
 
 ## 🚀 Features
