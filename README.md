@@ -2,7 +2,7 @@
 
 [![downloads](https://img.shields.io/github/downloads/NaxefirYT/Lone079Rework/total?style=for-the-badge&logo=icloud&color=%233A6D8C)](https://github.com/NaxefirYT/Lone079Rework/releases/latest)
 ![Latest](https://img.shields.io/github/v/release/NaxefirYT/Lone079Rework?style=for-the-badge&label=Latest%20Release&color=%23D91656)
-[![Exiled Version](https://img.shields.io/badge/Exiled-9.3.0+-blue?style=for-the-badge)](https://github.com/Exiled-Team/EXILED)
+[![Exiled Version](https://img.shields.io/badge/Exiled-9.4.0+-blue?style=for-the-badge)](https://github.com/Exiled-Team/EXILED)
 
 ---
 
