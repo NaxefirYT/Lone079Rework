@@ -76,8 +76,8 @@ public static class EventHandlers
         player.Role.Set(role);
 
         var healthMultiplier = Lone079.Instance.Config.ScaleWithLevel
-            ? (Lone079.Instance.Config.HealthPercent + (level - 1) * 5) / 100f
-            : Lone079.Instance.Config.HealthPercent / 100f;
+            ? ((Lone079.Instance.Config.HealthPercent + ((level - 1) * 5)) / 100f)
+            : (Lone079.Instance.Config.HealthPercent / 100f);
 
         player.Health = player.MaxHealth * healthMultiplier;
 
