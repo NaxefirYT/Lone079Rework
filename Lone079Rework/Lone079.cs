@@ -22,7 +22,7 @@ public class Lone079 : Plugin<Config>
     {
         Instance = this;
         Server.RoundStarted += EventHandlers.OnRoundStart;
-        Player.Died += EventHandlers.OnPlayerDied;
+        Player.Dying += EventHandlers.OnPlayerDying;
         Player.Left += EventHandlers.OnPlayerLeave;
         Warhead.Detonated += EventHandlers.OnDetonated;
         Cassie.SendingCassieMessage += EventHandlers.OnCassie;
@@ -33,7 +33,7 @@ public class Lone079 : Plugin<Config>
     public override void OnDisabled()
     {
         Server.RoundStarted -= EventHandlers.OnRoundStart;
-        Player.Died -= EventHandlers.OnPlayerDied;
+        Player.Dying -= EventHandlers.OnPlayerDying;
         Player.Left -= EventHandlers.OnPlayerLeave;
         Warhead.Detonated -= EventHandlers.OnDetonated;
         Cassie.SendingCassieMessage -= EventHandlers.OnCassie;

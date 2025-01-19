@@ -38,7 +38,7 @@
       <HintPath>..\packages\ExMod.Exiled.9.4.0\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\..\..\Documents\GitHub\Custom_Facility\_dll\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>..\..\Custom_Facility\_dll\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ExMod.Exiled.9.4.0\lib\net48\CommandSystem.Core.dll</HintPath>
@@ -64,6 +64,9 @@
     <Reference Include="Exiled.Permissions, Version=9.4.0.0, Culture=neutral, processorArchitecture=Amd64">
       <HintPath>..\packages\ExMod.Exiled.9.4.0\lib\net48\Exiled.Permissions.dll</HintPath>
     </Reference>
+    <Reference Include="Mirror">
+      <HintPath>..\..\Custom_Facility\_dll\Mirror.dll</HintPath>
+    </Reference>
     <Reference Include="NorthwoodLib, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ExMod.Exiled.9.4.0\lib\net48\NorthwoodLib.dll</HintPath>
     </Reference>
@@ -73,10 +76,13 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\Documents\GitHub\Custom_Facility\_dll\UnityEngine.dll</HintPath>
+      <HintPath>..\..\Custom_Facility\_dll\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\Documents\GitHub\Custom_Facility\_dll\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\Custom_Facility\_dll\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\Custom_Facility\_dll\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
       <HintPath>..\packages\ExMod.Exiled.9.4.0\lib\net48\YamlDotNet.dll</HintPath>
