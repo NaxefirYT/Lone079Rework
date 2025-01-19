@@ -15,6 +15,7 @@ public static class EventHandlers
 {
     private static readonly Random Rand = new();
     private static bool _canChange;
+    private static CoroutineHandle _checkCoroutine;
 
     private static readonly HashSet<RoleTypeId> Scp079Respawns =
     [
@@ -88,14 +89,22 @@ public static class EventHandlers
     {
         if (ev.Player.Role.Team != Team.SCPs) return;
         Log.Debug($"Player {ev.Player.Nickname} (SCP) died. Checking if SCP-079 needs to be transformed.");
-        Timing.RunCoroutine(OnCheck079(Lone079.Instance.Config.RespawnDelay));
+        if (_checkCoroutine.IsRunning)
+        {
+            Timing.KillCoroutines(_checkCoroutine);
+        }
+        _checkCoroutine = Timing.RunCoroutine(OnCheck079(Lone079.Instance.Config.RespawnDelay));
     }
 
     public static void OnPlayerLeave(LeftEventArgs ev)
     {
         if (ev.Player.Role.Team != Team.SCPs) return;
         Log.Debug($"Player {ev.Player.Nickname} left. Checking if SCP-079 needs to be transformed.");
-        Timing.RunCoroutine(OnCheck079(Lone079.Instance.Config.RespawnDelay));
+        if (_checkCoroutine.IsRunning)
+        {
+            Timing.KillCoroutines(_checkCoroutine);
+        }
+        _checkCoroutine = Timing.RunCoroutine(OnCheck079(Lone079.Instance.Config.RespawnDelay));
     }
 
     public static void OnDetonated()
