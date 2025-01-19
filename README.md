@@ -23,7 +23,7 @@
 
 ## 🛠️ Installation
 
-1. Download the latest release from the [Releases](https://github.com/your-username/Lone079Rework/releases) page.
+1. Download the latest release from the [Releases](https://github.com/NaxefirYT/Lone079Rework/releases) page.
 2. Place the `Lone079Rework.dll` file in the `Plugins` folder of your SCP:SL server.
 3. Restart the server.
 
