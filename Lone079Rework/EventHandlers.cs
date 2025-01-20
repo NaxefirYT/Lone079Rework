@@ -17,15 +17,6 @@ public static class EventHandlers
     private static bool _canChange;
     private static CoroutineHandle _checkCoroutine;
 
-    private static readonly HashSet<RoleTypeId> Scp079Respawns =
-    [
-        RoleTypeId.Scp049,
-        RoleTypeId.Scp096,
-        RoleTypeId.Scp106,
-        RoleTypeId.Scp173,
-        RoleTypeId.Scp939
-    ];
-
     private static IEnumerator<float> OnCheck079(float delay = 0.5f)
     {
         yield return Timing.WaitForSeconds(delay);
@@ -35,14 +26,14 @@ public static class EventHandlers
             Log.Debug("Conditions for SCP-079 respawn are not met (_canChange is false).");
             yield break;
         }
-        
+
         var scpPlayers = Player.Get(Team.SCPs).Where(p => p.Role != RoleTypeId.Scp079);
 
         if (!Lone079.Instance.Config.CountZombies)
             scpPlayers = scpPlayers.Where(p => p.Role != RoleTypeId.Scp0492);
 
         var scpList = scpPlayers.ToList();
-        
+
         if (scpList.Count == 0)
         {
             var player = Player.Get(Team.SCPs).FirstOrDefault(p => p.Role == RoleTypeId.Scp079);
@@ -51,10 +42,11 @@ public static class EventHandlers
                 Log.Debug("SCP-079 not found.");
                 yield break;
             }
-            
-            if (Scp079Respawns.Count > 0)
+
+            if (Lone079.Instance.Config.Scp079AvailableRoles.Count > 0)
             {
-                var role = Scp079Respawns.ElementAt(Rand.Next(Scp079Respawns.Count));
+                var role = Lone079.Instance.Config.Scp079AvailableRoles[
+                    Rand.Next(Lone079.Instance.Config.Scp079AvailableRoles.Count)];
                 TransformScp079(player, role);
             }
             else
@@ -80,8 +72,7 @@ public static class EventHandlers
             : (Lone079.Instance.Config.HealthPercent / 100f);
 
         player.Health = player.MaxHealth * healthMultiplier;
-
-        Log.Debug($"Broadcasting message to SCP-079: {Lone079.Instance.Config.BroadcastMessage}");
+        
         player.Broadcast(Lone079.Instance.Config.BroadcastDuration, Lone079.Instance.Config.BroadcastMessage);
     }
 
@@ -89,24 +80,10 @@ public static class EventHandlers
     {
         if (ev.Player.Role.Team != Team.SCPs) return;
         Log.Debug($"Player {ev.Player.Nickname} (SCP) died. Checking if SCP-079 needs to be transformed.");
-        if (_checkCoroutine.IsRunning)
-        {
-            Timing.KillCoroutines(_checkCoroutine);
-        }
+        if (_checkCoroutine.IsRunning) Timing.KillCoroutines(_checkCoroutine);
         _checkCoroutine = Timing.RunCoroutine(OnCheck079(Lone079.Instance.Config.RespawnDelay));
     }
-
-    public static void OnPlayerLeave(LeftEventArgs ev)
-    {
-        if (ev.Player.Role.Team != Team.SCPs) return;
-        Log.Debug($"Player {ev.Player.Nickname} left. Checking if SCP-079 needs to be transformed.");
-        if (_checkCoroutine.IsRunning)
-        {
-            Timing.KillCoroutines(_checkCoroutine);
-        }
-        _checkCoroutine = Timing.RunCoroutine(OnCheck079(Lone079.Instance.Config.RespawnDelay));
-    }
-
+    
     public static void OnDetonated()
     {
         Log.Debug("Warhead detonated. Disabling SCP-079 transformation.");
@@ -128,21 +105,50 @@ public static class EventHandlers
 
     public static void OnRecontaining(RecontainingEventArgs ev)
     {
-        if (!_canChange || !Lone079.Instance.Config.TransformOnRecontain) return;
-        Log.Debug("Blocking SCP-079 recontainment.");
-        ev.IsAllowed = false;
-        
         var player = ev.Player;
-        if (player == null || player.Role != RoleTypeId.Scp079) return;
+        if (player == null) return;
+        
+        var scpPlayers = Player.Get(Team.SCPs).Where(p => p.Role != RoleTypeId.Scp079);
 
-        if (Scp079Respawns.Count > 0)
+        if (!Lone079.Instance.Config.CountZombies)
+            scpPlayers = scpPlayers.Where(p => p.Role != RoleTypeId.Scp0492);
+
+        var scpList = scpPlayers.ToList();
+        
+        if (scpList.Count == 0)
         {
-            var role = Scp079Respawns.ElementAt(Rand.Next(Scp079Respawns.Count));
-            TransformScp079(player, role);
+            Log.Debug("SCP-079 is the last SCP. Blocking recontainment and transforming.");
+            ev.IsAllowed = false;
+
+            if (Lone079.Instance.Config.Scp079AvailableRoles.Count > 0)
+            {
+                var role = Lone079.Instance.Config.Scp079AvailableRoles[Rand.Next(Lone079.Instance.Config.Scp079AvailableRoles.Count)];
+                TransformScp079(player, role);
+            }
+            else
+            {
+                Log.Debug("No available SCP roles to transform SCP-079 into after recontainment.");
+            }
+        }
+        else if (Lone079.Instance.Config.TransformOnRecontain)
+        {
+            Log.Debug("TransformOnRecontain is enabled. Blocking recontainment and transforming.");
+            ev.IsAllowed = false;
+
+            if (Lone079.Instance.Config.Scp079AvailableRoles.Count > 0)
+            {
+                var role = Lone079.Instance.Config.Scp079AvailableRoles[Rand.Next(Lone079.Instance.Config.Scp079AvailableRoles.Count)];
+                TransformScp079(player, role);
+            }
+            else
+            {
+                Log.Debug("No available SCP roles to transform SCP-079 into after recontainment.");
+            }
         }
         else
         {
-            Log.Debug("No available SCP roles to transform SCP-079 into after recontainment.");
+            Log.Debug("TransformOnRecontain is disabled. Allowing recontainment.");
+            ev.IsAllowed = true;
         }
     }
 }
