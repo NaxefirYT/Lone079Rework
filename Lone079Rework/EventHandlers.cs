@@ -2,7 +2,6 @@
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.API.Features.Roles;
-using Exiled.Events.EventArgs.Cassie;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp079;
 using MEC;
@@ -79,7 +78,7 @@ public static class EventHandlers
     public static void OnPlayerDying(DyingEventArgs ev)
     {
         if (ev.Player.Role.Team != Team.SCPs) return;
-        Log.Debug($"Player {ev.Player.Nickname} (SCP) died. Checking if SCP-079 needs to be transformed.");
+        Log.Debug($"Player {ev.Player.Nickname} ({ev.Player.Role}) died. Checking if SCP-079 needs to be transformed.");
         if (_checkCoroutine.IsRunning) Timing.KillCoroutines(_checkCoroutine);
         _checkCoroutine = Timing.RunCoroutine(OnCheck079(Lone079.Instance.Config.RespawnDelay));
     }
@@ -94,13 +93,6 @@ public static class EventHandlers
     {
         Log.Debug("Round started. Initializing SCP-079 transformation settings.");
         _canChange = true;
-    }
-
-    public static void OnCassie(SendingCassieMessageEventArgs ev)
-    {
-        if (!ev.Words.Contains("allgeneratorsengaged")) return;
-        Log.Debug("Blocking CASSIE message: 'allgeneratorsengaged'.");
-        ev.IsAllowed = false;
     }
 
     public static void OnRecontaining(RecontainingEventArgs ev)

@@ -2,7 +2,6 @@
 using Exiled.API.Features;
 using Exiled.Events.Handlers;
 using JetBrains.Annotations;
-using Cassie = Exiled.Events.Handlers.Cassie;
 using Player = Exiled.Events.Handlers.Player;
 using Server = Exiled.Events.Handlers.Server;
 using Warhead = Exiled.Events.Handlers.Warhead;
@@ -24,7 +23,6 @@ public class Lone079 : Plugin<Config>
         Server.RoundStarted += EventHandlers.OnRoundStart;
         Player.Dying += EventHandlers.OnPlayerDying;
         Warhead.Detonated += EventHandlers.OnDetonated;
-        Cassie.SendingCassieMessage += EventHandlers.OnCassie;
         Scp079.Recontaining += EventHandlers.OnRecontaining;
         base.OnEnabled();
     }
@@ -34,7 +32,6 @@ public class Lone079 : Plugin<Config>
         Server.RoundStarted -= EventHandlers.OnRoundStart;
         Player.Dying -= EventHandlers.OnPlayerDying;
         Warhead.Detonated -= EventHandlers.OnDetonated;
-        Cassie.SendingCassieMessage -= EventHandlers.OnCassie;
         Scp079.Recontaining -= EventHandlers.OnRecontaining;
         base.OnDisabled();
     }
