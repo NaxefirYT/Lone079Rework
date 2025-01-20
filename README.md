@@ -41,7 +41,7 @@ lone079_rework:
   # Whether the plugin is enabled or not.
   is_enabled: true
   # Whether debug messages should be shown in the server console.
-  debug: true
+  debug: false
   # Whether SCP-049-2 (zombies) should be counted as SCPs when checking if SCP-079 is the last SCP alive.
   count_zombies: false
   # Whether SCP-079's respawn health should scale with its level. If true, health increases by 5% per level.
@@ -54,7 +54,7 @@ lone079_rework:
   broadcast_duration: 10
   # The delay (in seconds) before SCP-079 is respawned after being the last SCP alive.
   respawn_delay: 3
-  # Whether SCP-079 should transform into another SCP when recontainment is blocked.
+  # Whether SCP-079 should transform into another SCP when recontainment.
   transform_on_recontain: false
   # List of SCP roles that SCP-079 can transform into.
   scp079_available_roles:
@@ -63,4 +63,3 @@ lone079_rework:
   - Scp106
   - Scp173
   - Scp939
-
