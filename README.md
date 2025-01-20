@@ -3,8 +3,9 @@
 [![downloads](https://img.shields.io/github/downloads/NaxefirYT/Lone079Rework/total?style=for-the-badge&logo=icloud&color=%233A6D8C)](https://github.com/NaxefirYT/Lone079Rework/releases/latest)
 ![Latest](https://img.shields.io/github/v/release/NaxefirYT/Lone079Rework?style=for-the-badge&label=Latest%20Release&color=%23D91656)
 [![Exiled Version](https://img.shields.io/badge/Exiled-9.4.0+-blue?style=for-the-badge)](https://github.com/Exiled-Team/EXILED)
-
----
+[![GitHub stars](https://img.shields.io/github/stars/NaxefirYT/Lone079Rework?style=for-the-badge&logo=github&color=yellow)](https://github.com/NaxefirYT/Lone079Rework/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/NaxefirYT/Lone079Rework?style=for-the-badge&logo=github&color=orange)](https://github.com/NaxefirYT/Lone079Rework/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/NaxefirYT/Lone079Rework?style=for-the-badge&logo=github&color=blue)](https://github.com/NaxefirYT/Lone079Rework/pulls)
 
 ## 📖 Description
 
